@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Filmes</title>
+</head>
+<body>
+
+<div layout:fragment="conteudo">
+    <h1>Lista de Filmes</h1>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Gênero</th>
+        </tr>
+        <tr th:each="filmesDTO : ${lista}">
+            <td th:text="${filmesDTO.nome}"></td>
+            <td th:text="${filmesDTO.genero}"></td>
+        </tr>
+    </table>
+
+    <a href="/filmes/formulario">Novo</a>
+</div>
+
+
+</body>
+</html>
