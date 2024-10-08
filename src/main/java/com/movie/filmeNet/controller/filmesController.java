@@ -2,6 +2,7 @@ package com.movie.filmeNet.controller;
 
 
 import com.movie.filmeNet.model.filmes.CadastroFilme;
+import com.movie.filmeNet.model.filmes.DadosAlteracaoFilme;
 import com.movie.filmeNet.model.filmes.FilmesDTO;
 import com.movie.filmeNet.model.filmes.FilmesRepository;
 import jakarta.transaction.Transactional;
@@ -42,4 +43,21 @@ public class filmesController {
         return "redirect:/filmes/lista";
     }
 
+    @GetMapping("/formulario")
+    public String carregaFormulario(Long id, Model model){
+        if(id != null){
+            FilmesDTO F1 = repository.getReferenceById(id);
+            model.addAttribute("filmesDTO", F1);
+        }
+        return "/filmes/formulario";
+    }
+
+    @PutMapping("/formulario")
+    @Transactional
+    public String alterarFilme(DadosAlteracaoFilme dados){
+        FilmesDTO filme = repository.getReferenceById((dados.id()));
+        filme.atualizaDados(dados);
+        repository.save(filme);
+        return "redirect:/filmes/lista";
+    }
 }

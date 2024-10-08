@@ -32,6 +32,10 @@ public class FilmesDTO {
 
     public FilmesDTO(){}
 
+    public void atualizaDados(DadosAlteracaoFilme dados){
+        this.nome = dados.nome();
+        this.genero = dados.genero();
+    }
 
     @Override
     public String toString(){
