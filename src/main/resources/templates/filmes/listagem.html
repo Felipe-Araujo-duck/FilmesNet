@@ -17,16 +17,23 @@
         <tr>
             <th>Nome</th>
             <th>Gênero</th>
+            <th>Ações</th>
         </tr>
         <tr th:each="filmesDTO : ${lista}">
             <td th:text="${filmesDTO.nome}"></td>
             <td th:text="${filmesDTO.genero}"></td>
+            <td>
+                <form action="/filmes" method="post">
+                    <input type="hidden" name="_method" value="delete" />
+                    <input type="hidden" name="id" th:value="${filmesDTO.id}"/>
+                    <input type="submit" value="Excluir" />
+                </form>
+            </td>
         </tr>
     </table>
 
     <a href="/filmes/formulario">Novo</a>
 </div>
-
 
 </body>
 </html>
