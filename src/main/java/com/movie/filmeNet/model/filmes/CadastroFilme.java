@@ -1,5 +1,7 @@
 package com.movie.filmeNet.model.filmes;
 
-public record CadastroFilme(String nome, String genero) {
+import com.movie.filmeNet.model.generos.GenerosDTO;
+
+public record CadastroFilme(String nome, GenerosDTO genero) {
 
 }

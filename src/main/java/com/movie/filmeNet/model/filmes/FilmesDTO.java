@@ -1,5 +1,6 @@
 package com.movie.filmeNet.model.filmes;
 
+import com.movie.filmeNet.model.generos.GenerosDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,7 +12,9 @@ public class FilmesDTO {
 
     private Long id;
     private String nome;
-    private String genero;
+    @ManyToOne
+    @JoinColumn(name = "idGenero")
+    private GenerosDTO genero;
 
     public Long getId(){
         return id;
@@ -21,7 +24,7 @@ public class FilmesDTO {
     }
 
 
-    public String getGenero() {
+    public GenerosDTO getGenero() {
         return genero;
     }
 

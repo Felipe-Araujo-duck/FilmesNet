@@ -1,4 +1,6 @@
 package com.movie.filmeNet.model.filmes;
 
-public record DadosAlteracaoFilme(Long id, String nome, String genero) {
+import com.movie.filmeNet.model.generos.GenerosDTO;
+
+public record DadosAlteracaoFilme(Long id, String nome, GenerosDTO genero) {
 }

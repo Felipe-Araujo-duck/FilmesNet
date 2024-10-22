@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro de Genero</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Cadastro de Genero</h1>
+
+    <form th:action="@{'/generos/formulario'}" method="POST">
+        <input type="hidden" name="_method" value="put" th:if="${generosDTO!=null}">
+        <input type="hidden" name="id" th:value="${generosDTO?.idGenero}">
+
+        <div>
+            <label for="nomeGenero">Nome do Genero:</label>
+            <input type="text" id="nomeGenero" name="nomeGenero" th:value="${generosDTO?.nomeGenero}" required>
+
+        </div>
+
+        <input type="submit" th:value="${generosDTO == null ? 'Cadastrar Genero' : 'Atualizar Genero'}">
+    </form>
+</div>
+
+
+</body>
+</html>

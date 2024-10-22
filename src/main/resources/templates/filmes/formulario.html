@@ -28,10 +28,21 @@
 
         <div>
             <label for="genero">Gênero:</label>
-            <input type="text" id="genero" name="genero" th:value="${filmesDTO?.genero}" required>
+            <select id="genero" name="genero">
+                <option value="">Selecione um gênero</option>
+                <th:block th:each="gen : ${listaGenero}">
+                    <option th:value="${gen.idGenero}"
+                            th:text="${gen.nomeGenero}"></option>
+                </th:block>
+            </select>
         </div>
 
-        <input type="submit" th:value="${filmesDTO == null ? 'Cadastrar Filme' : 'Atualizar Filme'}">
+        <div style="display: flex; justify-content: center;">
+            <input type="submit" th:value="${filmesDTO == null ? 'Cadastrar Filme' : 'Atualizar Filme'}">
+            <a href="/menus/principal">Menu Principal</a>
+        </div>
+
+
     </form>
 </div>
 

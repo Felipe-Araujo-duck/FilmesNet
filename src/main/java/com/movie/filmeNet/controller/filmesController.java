@@ -5,6 +5,7 @@ import com.movie.filmeNet.model.filmes.CadastroFilme;
 import com.movie.filmeNet.model.filmes.DadosAlteracaoFilme;
 import com.movie.filmeNet.model.filmes.FilmesDTO;
 import com.movie.filmeNet.model.filmes.FilmesRepository;
+import com.movie.filmeNet.model.generos.GeneroRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ public class filmesController {
 
     @Autowired
     private FilmesRepository repository;
+    @Autowired
+    private GeneroRepository repositoryGenero;
 
     @GetMapping("/lista")
     public String listaFilmes(Model model){
@@ -49,6 +52,7 @@ public class filmesController {
             FilmesDTO F1 = repository.getReferenceById(id);
             model.addAttribute("filmesDTO", F1);
         }
+        model.addAttribute("listaGenero", repositoryGenero.findAll());
         return "/filmes/formulario";
     }
 
