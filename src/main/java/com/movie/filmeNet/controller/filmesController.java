@@ -6,6 +6,7 @@ import com.movie.filmeNet.model.filmes.DadosAlteracaoFilme;
 import com.movie.filmeNet.model.filmes.FilmesDTO;
 import com.movie.filmeNet.model.filmes.FilmesRepository;
 import com.movie.filmeNet.model.generos.GeneroRepository;
+import com.movie.filmeNet.model.generos.GenerosDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,4 +65,22 @@ public class filmesController {
         repository.save(filme);
         return "redirect:/filmes/lista";
     }
+
+    @GetMapping("/maiorgenero")
+    public  String buscarGeneroComMaisFilmes(Model model)
+    {
+        //List<GenerosDTO> generosDTOList = repository.findGeneroWithMostFilmes();
+        //GenerosDTO g1 = generosDTOList.get(0);
+        Long idGenero = repository.GeneroWithMostFilmes();
+        GenerosDTO genero = repositoryGenero.findById(idGenero).orElse(null);
+        if(idGenero != null)
+        {
+            List<FilmesDTO> filmesDTOList = repository.findByGenero_IdGenero(idGenero);
+            model.addAttribute("filmes", filmesDTOList);
+            model.addAttribute("nomeGenero", genero.getNomeGenero());
+        }
+        model.addAttribute("listaGenero", repositoryGenero.findAll());
+        return "/filmes/maiorgenero";
+    }
+
 }

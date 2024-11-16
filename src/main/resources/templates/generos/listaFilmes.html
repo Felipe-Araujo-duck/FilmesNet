@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+
+<div layout:fragment="conteudo">
+  <h1>Lista de Filmes por Gênero</h1>
+
+  <form th:action="@{'/generos/filmes'}" method="GET">
+    <div>
+      <label for="genero">Gênero:</label>
+      <select id="genero" name="idGenero">
+        <option value="">Selecione um gênero</option>
+        <th:block th:each="gen : ${listaGenero}">
+          <option th:value="${gen.idGenero}"
+                  th:text="${gen.nomeGenero}"></option>
+        </th:block>
+      </select>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+      <input type="submit" value="Buscar filmes">
+      <a href="/menus/principal">Menu Principal</a>
+    </div>
+  </form>
+
+  <table>
+    <tr>
+      <th>Nome</th>
+
+    </tr>
+    <tr th:each="filmesDTO : ${filmes}">
+      <td th:text="${filmesDTO.nome}"></td>
+
+    </tr>
+  </table>
+
+</div>
+
+</body>
+</html>

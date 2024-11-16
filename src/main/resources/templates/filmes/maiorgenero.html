@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gênero com Maior Número de Filmes</title>
+</head>
+
+<body>
+<div layout:fragment="conteudo">
+  <h1>Gênero com maior número de filmes - MOVIE</h1>
+
+  <!-- Formulário para selecionar o gênero -->
+  <form th:action="@{/filmes/maiorgenero}" method="get">
+    <!-- Adicione aqui os campos do formulário, se necessário -->
+    <button type="submit">Buscar</button>
+  </form>
+
+  <!-- Listagem de filmes por gênero -->
+  <h2 th:if="${filmes != null}">
+    Filmes do gênero: <span th:text="${nomeGenero}"></span>
+  </h2>
+  <table th:if="${filmes != null}">
+    <thead>
+    <tr>
+      <th>Nome do Filme</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="filme : ${filmes}">
+      <td th:text="${filme.nome}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div style="display: flex; justify-content: center; margin-top: 20px;">
+    <a href="/menus/principal">Menu Principal</a>
+  </div>
+</div>
+</body>
+
+</html>
